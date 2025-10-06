@@ -1,0 +1,23 @@
+link: https://leetcode.com/problems/smallest-absent-positive-greater-than-average/description/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var smallestAbsent = function(nums) {
+    let avg=0;
+    let res;
+    for(let i of nums)
+    {
+     avg+=i;
+    }
+     avg/=nums.length;
+     res=Math.floor(avg)+1;
+     if(res<=0)
+     res=1;
+     while(nums.includes(res))
+     {
+        res++;
+     }
+     return res;
+};
