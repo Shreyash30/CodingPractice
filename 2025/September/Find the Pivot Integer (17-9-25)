@@ -1,0 +1,13 @@
+link: https://leetcode.com/problems/find-the-pivot-integer/description/
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var pivotInteger = function(n) {
+    const num=Math.sqrt((n*(n+1))/2);
+    if(Number.isInteger(num))
+    return num;
+    else
+    return -1;
+};
