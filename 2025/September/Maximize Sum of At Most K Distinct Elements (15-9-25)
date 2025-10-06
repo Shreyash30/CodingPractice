@@ -1,0 +1,16 @@
+link: https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/description/
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var maxKDistinct = function(nums, k) {
+    const res=new Set();
+    nums.sort((a,b)=>b-a);
+    for(let i=0;i<nums.length && res.size<k ;i++)
+    {
+      res.add(nums[i]);
+    }
+    return Array.from(res);
+};
