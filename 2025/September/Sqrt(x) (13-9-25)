@@ -1,0 +1,13 @@
+link: https://leetcode.com/problems/sqrtx/description/
+
+var mySqrt = function(x) {
+    if (x < 2) return x; // handle 0 and 1 directly
+
+    let ans = Math.floor(Math.exp(0.5 * Math.log(x)));
+
+    // fix possible floating point rounding issues
+    while ((ans + 1) * (ans + 1) <= x) ans++;
+    while (ans * ans > x) ans--;
+
+    return ans;
+};
