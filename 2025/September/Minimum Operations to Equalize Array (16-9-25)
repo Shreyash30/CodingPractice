@@ -1,0 +1,15 @@
+link: https://leetcode.com/problems/minimum-operations-to-equalize-array/description/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minOperations = function(nums) {
+    const res=new Set();
+    for(let i of nums)
+    res.add(i);
+    if(res.size==1)
+    return 0;
+    else
+    return 1;
+};
