@@ -1,0 +1,22 @@
+link: https://leetcode.com/problems/maximum-69-number/description/
+
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var maximum69Number  = function(num) {
+    if(String(num)==="9999"|| String(num)==="999" || String(num)==="99" || String(num)==="9")
+    return num;
+    let max=0;
+    for(let i=0;i<String(num).split("").length;i++)
+    {  let number=Array.from(String(num),Number);
+       if(number[i]===9)
+       number[i]=6;
+       else
+       number[i]=9;
+       if(Number(number.join("")) > max)
+       max=Number(number.join(""));
+    }
+    
+    return max;
+};
