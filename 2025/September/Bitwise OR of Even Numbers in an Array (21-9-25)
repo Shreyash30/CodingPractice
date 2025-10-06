@@ -1,0 +1,15 @@
+link: https://leetcode.com/problems/bitwise-or-of-even-numbers-in-an-array/description/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var evenNumberBitwiseORs = function(nums) {
+    let result=0;
+    for(let i of nums)
+    {
+        if(i%2==0)
+        result=result|i;
+    }
+    return result;
+};
