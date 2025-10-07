@@ -1,0 +1,22 @@
+link: https://leetcode.com/problems/watering-plants/description/
+
+int wateringPlants(int* plants, int plantsSize, int capacity) {
+     int steps=0;
+    int orgcapacity=capacity;
+    for(int i=0;i<plantsSize;i++)
+    {
+    if(capacity>=plants[i])
+    {
+        steps+=1;
+        capacity-=plants[i];
+    }
+    else
+    {
+        if(i!=0)
+        steps+=i+(i+1);
+        capacity=orgcapacity;
+        capacity-=plants[i];
+    }
+    }
+    return steps;
+}
