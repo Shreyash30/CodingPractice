@@ -1,0 +1,26 @@
+link: https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/description/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ function reverse(num)
+ {
+     const numString = num.toString();
+
+  // Split the string into an array of characters, reverse it, and join back into a string
+  const reversedString = numString.split('').reverse().join('');
+
+  // Convert the reversed string back to a number
+  return parseInt(reversedString);
+ }
+var countDistinctIntegers = function(nums) {
+    let unique=new Set();
+    for(let i of nums)
+    {   unique.add(i);
+      let reversed=reverse(i);
+       unique.add(reversed);
+    }
+    return unique.size;
+
+};
