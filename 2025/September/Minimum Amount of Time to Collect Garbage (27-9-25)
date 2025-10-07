@@ -1,0 +1,49 @@
+link: https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/description/
+
+int garbageCollection(char** garbage, int garbageSize, int* travel, int travelSize) {
+    int min=0;
+    int gi=-1,pi=-1,mi=-1;//for highest index where each type of garbage is present
+    for(int i=0;i<garbageSize;i++)
+    {
+        for(int j=0;j<strlen(garbage[i]);j++)
+        {
+            if(garbage[i][j]=='G')
+            gi=i;
+            else if(garbage[i][j]=='P')
+            pi=i;
+            else
+            mi=i;
+        }
+    }
+    for(int i=0;i<=gi;i++)//for glass
+   {
+      for(int j=0;j<strlen(garbage[i]);j++)
+      {
+        if(garbage[i][j]=='G')
+        min+=1;
+      }
+       if(i!=0)
+        min+=travel[i-1];
+     }
+     for(int i=0;i<=pi;i++)//for paper
+   {
+      for(int j=0;j<strlen(garbage[i]);j++)
+      {
+        if(garbage[i][j]=='P')
+        min+=1;
+      }
+      if(i!=0)
+       min+=travel[i-1];
+     }
+     for(int i=0;i<=mi;i++)//for metal
+   {
+      for(int j=0;j<strlen(garbage[i]);j++)
+      {
+        if(garbage[i][j]=='M')
+        min+=1;
+      }
+      if(i!=0)
+       min+=travel[i-1];
+     }
+     return min;
+}
