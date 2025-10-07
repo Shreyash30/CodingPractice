@@ -1,0 +1,22 @@
+link: https://leetcode.com/problems/decompress-run-length-encoded-list/description/
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* decompressRLElist(int* nums, int numsSize, int* returnSize) {
+    int *arr=(int*)malloc(sizeof(int)*(10000));
+    int size=0;
+    for(int i=0;i<numsSize;i++)
+    {  if(2*i<numsSize)
+       {
+        int freq=nums[2*i];
+        int val=nums[2*i+1];
+        for(int j=1;j<=freq;j++)
+        {
+            arr[size++]=val;
+        }
+       }
+    }
+    *returnSize=size;
+    return arr;
+}
