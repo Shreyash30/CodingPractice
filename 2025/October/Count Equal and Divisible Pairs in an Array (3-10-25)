@@ -1,0 +1,25 @@
+link: https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/description/
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var countPairs = function(nums,k){
+    let res=0;
+    let left=0,right=1;
+    while(left<nums.length){
+        right=left+1;
+    while(right<nums.length)
+    {
+        if(nums[left]==nums[right] &&((left*right)%k==0))
+        {
+           res++;
+        }
+        
+        right++;
+    }
+    left++;}
+    return res;
+
+};
