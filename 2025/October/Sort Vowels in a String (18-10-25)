@@ -1,0 +1,27 @@
+link: https://leetcode.com/problems/sort-vowels-in-a-string/description/
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var sortVowels = function(s) {
+    let result="";
+    let vowel=['A','E','I','O','U','a','e','i','o','u'];
+    const vowels=new Set(vowel);
+    let arr=[];
+    for(let i of s)
+    {
+        if(vowels.has(i))
+        arr.push(i);
+    }
+    arr.sort();
+    let index=0;
+    for(let i of s)
+    {
+        if(vowels.has(i))
+        result+=arr[index++];
+        else
+        result+=i;
+    }
+    return result;
+};
