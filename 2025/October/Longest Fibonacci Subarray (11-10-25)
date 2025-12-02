@@ -1,0 +1,20 @@
+link: https://leetcode.com/problems/longest-fibonacci-subarray/description/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestSubarray = function(nums) {
+    if(nums.length<3)
+        return nums.length;
+    let max=2,curr=2;
+    for(let i=2;i<nums.length;i++)
+        {
+            if(nums[i]===nums[i-1]+nums[i-2])
+                curr++;
+            else
+                curr=2;
+            max=Math.max(curr,max);
+        }
+    return max;
+};
