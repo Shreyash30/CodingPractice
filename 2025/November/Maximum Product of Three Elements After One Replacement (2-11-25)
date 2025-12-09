@@ -1,0 +1,16 @@
+link: https://leetcode.com/problems/maximum-product-of-three-elements-after-one-replacement/description/
+
+class Solution {
+public:
+    long long maxProduct(vector<int>& nums) {
+        
+       vector<int> sorted;
+       for(int i=0;i<nums.size();i++)
+       {
+        sorted.push_back(abs(nums[i]));
+       }
+       sort(sorted.begin(),sorted.end());
+        return (long long)(sorted[sorted.size()-1])*(long long)(sorted[sorted.size()-2])*pow(10,5);
+       
+    }
+};
