@@ -1,0 +1,28 @@
+link: https://leetcode.com/problems/subdomain-visit-count/description/
+
+class Solution {
+public:
+    vector<string> subdomainVisits(vector<string>& cpdomains) {
+        unordered_map<string,int>mpp;
+        for(auto cd:cpdomains)
+        {
+            int i=cd.find(" ");
+            int num=stoi(cd.substr(0,i));
+            string dom=cd.substr(i+1);
+            for(int j=0;j<dom.size();j++)
+            {
+                if(dom[j]=='.')
+                {
+                    mpp[dom.substr(j+1)]+=num;
+                }
+            }
+            mpp[dom]+=num;
+        }
+        vector<string> res;
+        for(auto it:mpp)
+        {
+            res.push_back(to_string(it.second)+" "+it.first);
+        }
+        return res;
+    }
+};
