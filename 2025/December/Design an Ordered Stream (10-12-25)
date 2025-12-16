@@ -1,0 +1,33 @@
+link: https://leetcode.com/problems/design-an-ordered-stream/description/
+
+class OrderedStream {
+public:
+    int size;
+    int ptr=0;
+    
+vector<string> res;
+    OrderedStream(int n) {
+        size=n;
+        res.resize(n);
+     }
+    
+    vector<string> insert(int idKey, string value) {
+        res[idKey-1]=value;
+        if(idKey-1==ptr)
+        {  vector<string> temp;
+            while(ptr<size && res[ptr].empty()==false)
+            {temp.push_back(res[ptr]);ptr++;}
+            return temp;
+        }
+        else{
+            return {};
+        }
+
+    }
+};
+
+/**
+ * Your OrderedStream object will be instantiated and called as such:
+ * OrderedStream* obj = new OrderedStream(n);
+ * vector<string> param_1 = obj->insert(idKey,value);
+ */
