@@ -1,0 +1,36 @@
+link: https://leetcode.com/problems/sliding-subarray-beauty/description/
+
+
+class Solution {
+public:
+    vector<int> getSubarrayBeauty(vector<int>& nums, int k, int x) {
+
+        multiset<int> ms;  //container that stores elements in a sorted order and, unlike a standard set, allows duplicate values and  with a time complexity of O(log n) for insertion, deletion, and searching
+        vector<int> ans;
+        int i = 0;
+
+        for (int j = 0; j < nums.size(); j++) {
+
+            if (nums[j] < 0)
+                ms.insert(nums[j]);
+
+            if (j - i + 1 == k) {
+
+                if (ms.size() < x) {
+                    ans.push_back(0);
+                } else {
+                    auto it = ms.begin();
+                    for (int a= 1;a<x;a++) 
+                    it++;
+                    ans.push_back(*it);
+                }
+
+                if (nums[i] < 0)
+                    ms.erase(ms.find(nums[i]));
+
+                i++;
+            }
+        }
+        return ans;
+    }
+};
