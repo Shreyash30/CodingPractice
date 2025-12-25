@@ -1,0 +1,28 @@
+link: https://leetcode.com/problems/subarray-sum-equals-k/description/
+
+//If prefixSum[j]−prefixSum[i]=k then the subarray from index i+1 to j has sum = k.
+//Rewriting:
+//prefixSum[i]=prefixSum[j]−k
+//So while iterating, if we know how many times (sum - k) has appeared before, we know how many subarrays ending at current index have sum k.
+
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int i,ans=0,sum=0;
+        unordered_map<int,int>mpp;
+        for(i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            if(sum == k)
+              ans++;
+
+            int rem=sum-k;
+            if(mpp.count(rem)>0)
+              ans+= mpp[rem];
+
+              mpp[sum]++; 
+        }
+        return ans;
+    }
+};
