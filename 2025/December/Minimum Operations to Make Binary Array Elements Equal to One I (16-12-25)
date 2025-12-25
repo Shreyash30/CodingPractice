@@ -1,0 +1,29 @@
+link: https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/description/
+
+
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        int count=0;
+        int j=0;
+        set<int> st;
+        while(j+2<nums.size())
+        {
+            if(nums[j]==0)
+            {    nums[j]=1;
+                 nums[j+1]= (nums[j+1]==0)?1:0;
+                 nums[j+2]= (nums[j+2]==0)?1:0;
+                count++;
+            }
+            j++;
+         }
+         for(auto it:nums)
+         {
+            st.insert(it);
+         }
+         if(st.size()==1 && *st.begin()==1)
+         return count;
+         else
+         return -1;
+    }
+};
