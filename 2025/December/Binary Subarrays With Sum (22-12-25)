@@ -1,0 +1,23 @@
+link:  https://leetcode.com/problems/binary-subarrays-with-sum/description/
+
+
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+         int i,ans=0,sum=0;
+        unordered_map<int,int>mpp;
+        for(i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            if(sum == goal)
+              ans++;
+
+            int rem=sum-goal;
+            if(mpp.count(rem)>0)
+              ans+= mpp[rem];
+
+              mpp[sum]++; 
+        }
+        return ans;
+    }
+};
