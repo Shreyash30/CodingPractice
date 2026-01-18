@@ -1,0 +1,81 @@
+link: https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        
+        int count=0;
+        // Create a 2D vector to store levels
+        vector<vector <int>> ans; 
+        if (root == NULL) {
+            // If the tree is empty,
+            // return an empty vector
+            return ans; 
+        }
+        
+        // Create a queue to store nodes
+        // for level-order traversal
+        deque<TreeNode*> q; 
+        // Push the root node to the queue
+        q.push_back(root); 
+
+        while (q.empty()==false) {
+            // Get the size of the current level
+            int size = q.size(); 
+            // Create a vector to store
+            // nodes at the current level
+            vector<int> level; 
+             TreeNode* node = NULL;
+            for (int i = 0; i < size; i++) {
+                
+                if(count % 2 == 0){
+                node = q.front(); 
+                q.pop_front();
+                level.push_back(node->val);
+                if (node->left != NULL) {
+                   
+                    q.push_back(node->left);
+                    
+                }
+                if (node->right != NULL) {
+                   
+                    q.push_back(node->right);
+                    
+                }
+                } 
+
+                else 
+                {
+                    node = q.back();
+                    q.pop_back();
+                    level.push_back(node->val);
+                    
+                if (node->right != NULL) {
+                q.push_front(node->right);
+                }
+                if (node->left != NULL) {
+                   q.push_front(node->left);
+                }
+                }
+                
+            }
+            count++;
+            ans.push_back(level); 
+        }
+        // Return the level-order
+        // traversal of the tree
+        return ans; 
+
+    }
+};
