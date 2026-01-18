@@ -1,0 +1,47 @@
+link: https://leetcode.com/problems/min-stack/description/
+
+class MinStack {
+public:
+    priority_queue<int,vector<int>,greater<int>>pq;
+      vector<int> st;
+    MinStack() {}
+    
+    void push(int val) {
+        st.push_back(val);
+        pq.push(val);
+    }
+    
+    void pop() {
+        int target = st.back();
+        st.pop_back();
+        vector<int> temp;
+        while(pq.empty()==false && pq.top() != target)
+        {
+            temp.push_back(pq.top());
+            pq.pop();
+        }
+        pq.pop();
+        
+        while(temp.empty()==false){
+        pq.push(temp.back());
+        temp.pop_back();
+        }
+    }
+    
+    int top() {
+       return st.back();
+    }
+    
+    int getMin() {
+        return pq.top();
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(val);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
