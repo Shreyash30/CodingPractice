@@ -1,0 +1,24 @@
+link: https://leetcode.com/problems/jump-game-iii/description/
+
+class Solution {
+public:
+     
+     bool dfs(vector<int>& arr, vector<int>& vis,int start)
+     {      
+        if(start >= vis.size()) return false;
+        if(vis[start] == 0) return false; // if the index is being visited twice
+
+        vis[start] = 0; //mark as visited
+
+        if(arr[start] == 0)
+        return true;
+
+         return dfs(arr,vis, start + arr[start]) || dfs(arr,vis, start - arr[start]);
+
+     }
+
+    bool canReach(vector<int>& arr, int start) {
+        vector<int> vis (arr.size(), -1);
+        return dfs(arr, vis, start);
+   }
+};
