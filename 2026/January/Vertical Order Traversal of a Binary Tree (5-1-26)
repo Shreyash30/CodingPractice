@@ -1,0 +1,55 @@
+link: https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/description/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    
+    void dfs(TreeNode* root,int row, int col, vector<pair<pair<int,int>,int>>& col_node)
+    {
+        if(root == NULL)
+        return;
+        col_node.push_back({{row,col},root->val});
+        if(root->left) { dfs(root->left,row+1, col-1, col_node);}
+        
+        if(root->right) {  dfs(root->right, row+1, col+1, col_node);  }
+    }
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        vector<vector<int>> res;
+        vector<pair<pair<int,int>,int>> col_node;
+        map<int,vector<pair<int,int>>> mpp;
+
+        dfs(root,0,0,col_node);
+
+        for(auto it: col_node)
+        {
+           mpp[(it.first).second].push_back({it.first.first,it.second}); 
+        }
+
+        for(auto it: mpp)
+        {    
+            vector<pair<int,int>> temp;
+            for(auto it2: it.second)
+             {
+                temp.push_back(it2);
+             }
+             sort(temp.begin() ,temp.end());
+             vector<int> first;
+             for(auto it3: temp)
+             {first.push_back(it3.second);}
+             res.push_back(first);
+             (it.second).clear();
+        }
+        return res;
+
+    }
+};
